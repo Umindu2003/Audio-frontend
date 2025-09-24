@@ -1,14 +1,38 @@
 import { useState } from "react";
 import "./login.css";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     function handleSubmit(e) {  
         e.preventDefault();
         console.log(email , password);
+
+        axios.post("http://localhost:3000/api/users/login", 
+            { 
+                email : email,
+                password : password 
+            }).then((res) => {
+                console.log(res);
+                toast.success("Login Successful");
+                const user = res.data.user
+                if (user.role === "admin") {
+                    navigate("/admin"); // if the user is admin, redirect to admin page
+                }else{
+                    navigate("/");
+                }
+
+            }).catch((err) => {
+                console.log(err);
+                toast.error(err.response.data.error );
+            });
+            
     }
 
     return (
