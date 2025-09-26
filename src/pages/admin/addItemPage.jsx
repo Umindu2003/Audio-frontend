@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function AddItemPage() {
   const [productKey, setProductKey] = useState("");
@@ -10,6 +11,7 @@ export default function AddItemPage() {
   const [productDimensions, setProductDimensions] = useState("");
   const [productDescription, setProductDescription] = useState("");
 
+  const navigate = useNavigate();
 
   async function handleAddItem() {
     console.log({
@@ -37,6 +39,8 @@ export default function AddItemPage() {
           }
         });
         toast.success(result.data.message);
+        navigate("/admin/items");
+
         } catch (err) {
         toast.error("Error adding item. Please try again.");
         console.error(err);
@@ -98,7 +102,7 @@ export default function AddItemPage() {
           Add
         </button>
 
-        <button className="bg-red-500 text-white py-2 rounded hover:bg-red-600">
+        <button onClick={() => {navigate("/admin/items")}} className="bg-red-500 text-white py-2 rounded hover:bg-red-600">
           Cancel
         </button>
 
