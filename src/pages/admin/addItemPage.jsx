@@ -1,4 +1,6 @@
 export default function AddItemPage() {
+  
+
   return (
     <div className="w-full h-full flex flex-col items-center">
       <h1>Add New Item</h1>
