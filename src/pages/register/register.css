@@ -1,0 +1,11 @@
+.bg-picture{
+    
+    background-image: url('/public/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    
+
+}
