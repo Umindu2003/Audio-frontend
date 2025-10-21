@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="w-full h-[100px] shadow-xl flex justify-center items-center relative">
+    <header className="w-full h-[100px] shadow-xl flex justify-center items-center relative bg-accent">
       <img src="/logo.png" alt="logo" className="h-[100px] w-[100px] object-cover border-[3px] absolute left-1 rounded-full"/>
         <Link to= "/" className="text-[25px] font-bold m-1"> Home </Link>
         <Link to= "/contacts" className="text-[25px] font-bold m-1"> Contacts </Link>
