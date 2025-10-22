@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import mediaUpload from "../../utils/mediaUpload";
 
 export default function AddItemPage() {
   const [productKey, setProductKey] = useState("");
@@ -10,29 +11,51 @@ export default function AddItemPage() {
   const [productCategory, setProductCategory] = useState("audio");
   const [productDimensions, setProductDimensions] = useState("");
   const [productDescription, setProductDescription] = useState("");
+	const [productImages, setProductImages] = useState([]);
 
   const navigate = useNavigate();
 
   async function handleAddItem() {
-    console.log({
+
+    const promises = [];
+
+
+    for (let i = 0; i < productImages.length; i++) {
+			console.log(productImages[i]);
+			const promise = mediaUpload(productImages[i]);
+			promises.push(promise);
+			// if(i ==5){
+			// 	toast.error("You can only upload 25 images at a time");
+			// 	break;
+			// }
+		}
+
+
+    console.log(
       productKey,
       productName,
       productPrice,
       productCategory,
       productDimensions,
       productDescription
-    });
+    );
 
     const token = localStorage.getItem("token");
+    console.log("Token:", token ? "Exists" : "Missing");
+    
     if(token) {
       try {
+        const imageUrls = await Promise.all(promises);
+        console.log("Uploaded image URLs:", imageUrls);
+
         const result = await axios.post("http://localhost:3000/api/products", {
           key : productKey,
           name : productName,
           price : productPrice,
           category : productCategory,
           dimensions : productDimensions,
-          description : productDescription
+          description : productDescription,
+          image : imageUrls
         }, {
           headers: {
             Authorization: "Bearer " + token
@@ -42,7 +65,7 @@ export default function AddItemPage() {
         navigate("/admin/items");
 
         } catch (err) {
-        toast.error("Error adding item. Please try again.");
+        toast.error(err.response?.data?.error || err.response?.data?.message || "Error adding item. Please try again.");
         console.error(err);
         return;
       }
@@ -98,6 +121,18 @@ export default function AddItemPage() {
           placeholder="Product Description"
           className="border p-2 rounded"
         />
+        <input
+					type="file"
+					multiple
+					onChange={(e) => {
+						setProductImages(e.target.files);
+					}}
+					className="w-full p-2 border rounded"
+				/>
+
+
+
+        
         <button onClick={handleAddItem} className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
           Add
         </button>
