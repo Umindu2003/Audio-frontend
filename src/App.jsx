@@ -7,6 +7,7 @@ import LoginPage from './pages/login/login'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import RegisterPage from './pages/register/register'
 import Testing from './components/testing'
+import BookingPage from './pages/home/bookingPage'
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Route path="/*" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        
+        <Route path="/booking" element={<BookingPage />} />
       </Routes>
     </BrowserRouter>
   )

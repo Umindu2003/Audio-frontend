@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ImageSlider from "../../components/imageSlider";
-// import { addToCart, loadCart } from "../../utils/cart";
+import { addToCart, loadCart } from "../../utils/cart";
 import toast from "react-hot-toast";
 
 export default function ProductOverview() {
@@ -15,15 +15,24 @@ export default function ProductOverview() {
 		axios
 			.get(`http://localhost:3000/api/products/${key}`)
 			.then((res) => {
-				setProduct(res.data);
+				// Check if response is an array and find the product with matching key
+				let productData = res.data;
+				if (Array.isArray(res.data)) {
+					productData = res.data.find(p => p.key === key);
+					if (!productData) {
+						setLoadingStatus("error");
+						return;
+					}
+				}
+				setProduct(productData);
 				setLoadingStatus("loaded");
-				console.log(res.data);
+				console.log(productData);
 			})
 			.catch((err) => {
 				console.error(err);
 				setLoadingStatus("error");
 			});
-	}, []);
+	}, [key]);
 	return (
 		<div className="w-full flex justify-center">
 			{loadingStatus == "loading" && (
@@ -39,15 +48,15 @@ export default function ProductOverview() {
 					</div>
 					<div className="w-full md:w-[49%] p-2 flex flex-col items-center">
 						<h1 className="hidden md:block text-3xl font-bold text-accent">{product.name}</h1>
-						<h2 className="text-xl font-semibold text-gray-800">
-							{product.category} category
-						</h2>
-						<p className="text-gray-700 mt-4 text-center">{product.description}</p>
-						<p className="text-lg  text-green-500">Rs. {product.price.toFixed(2)}</p>
-						<div className="mt-4 text-sm text-gray-600">
-							<span className="font-medium">Dimensions:</span>{" "}
-							{product.dimensions}
-						</div>
+					<h2 className="text-xl font-semibold text-gray-800">
+						{product.category} category
+					</h2>
+					<p className="text-gray-700 mt-4 text-center">{product.description}</p>
+					<p className="text-lg  text-green-500">Rs. {product.price?.toFixed(2)}</p>
+					<div className="mt-4 text-sm text-gray-600">
+						<span className="font-medium">Dimensions:</span>{" "}
+						{product.dimensions}
+					</div>
 						<button
 							className="mt-4 bg-accent text-white px-4 py-2 rounded-md"
 							onClick={() => {

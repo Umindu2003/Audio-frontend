@@ -1,9 +1,14 @@
 import { useState } from "react";
 
 export default function ImageSlider(props){
-    const images = props.images;
+    const images = props.images || [];
     console.log(images);
-    const [selectedImage, setSelectedImage] = useState(images[0]);
+    const [selectedImage, setSelectedImage] = useState(images[0] || "");
+    
+    if (!images || images.length === 0) {
+        return <div className="w-full h-[300px] md:h-[500px] flex items-center justify-center bg-gray-200">No images available</div>;
+    }
+    
     return(
         <div className="w-full flex flex-col items-center ">
             <img src={selectedImage} alt="product" className="w-full h-[300px] md:h-[500px] object-cover"/>
