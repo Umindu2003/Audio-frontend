@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
+import mediaUpload from "../../utils/mediaUpload";
 
 export default function UpdateItemPage() {
   const location = useLocation();
@@ -13,31 +14,53 @@ export default function UpdateItemPage() {
   const [productCategory, setProductCategory] = useState(location.state.category);
   const [productDimensions, setProductDimensions] = useState(location.state.dimensions);
   const [productDescription, setProductDescription] = useState(location.state.description);
+	const [productImages, setProductImages] = useState([]);
 
   
   const navigate = useNavigate();
   
 
-  async function handleAddItem() {
-    console.log({
+  async function handleUpdateItem() {
+
+ 		let updatingImages = location.state.image
+
+		if (productImages.length > 0) {
+			const promises = [];
+
+			for (let i = 0; i < productImages.length; i++) {
+				console.log(productImages[i]);
+				const promise = mediaUpload(productImages[i]);
+				promises.push(promise);
+			}
+
+			updatingImages = await Promise.all(promises);
+		}   
+
+    console.log(
       productKey,
       productName,
       productPrice,
       productCategory,
       productDimensions,
       productDescription
-    });
+    );
 
     const token = localStorage.getItem("token");
+    console.log("Token:", token ? "Exists" : "Missing");
+    
     if(token) {
       try {
+        console.log("Updated image URLs:", updatingImages);
+        
         const result = await axios.put(`http://localhost:3000/api/products/${productKey}`, {
           key : productKey,
           name : productName,
           price : productPrice,
           category : productCategory,
           dimensions : productDimensions,
-          description : productDescription
+          description : productDescription,
+          image : updatingImages
+
         }, {
           headers: {
             Authorization: "Bearer " + token
@@ -47,12 +70,12 @@ export default function UpdateItemPage() {
         navigate("/admin/items");
 
         } catch (err) {
-        toast.error("Error adding item. Please try again.");
+        toast.error(err.response?.data?.error || err.response?.data?.message || "Error updating item. Please try again.");
         console.error(err);
         return;
       }
     } else {
-        toast.error("You must be logged in to add an item.");
+        toast.error("You must be logged in to update an item.");
     }
   }
 
@@ -104,7 +127,17 @@ export default function UpdateItemPage() {
           placeholder="Product Description"
           className="border p-2 rounded"
         />
-        <button onClick={handleAddItem} className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+
+        <input
+					type="file"
+					multiple
+					onChange={(e) => {
+						setProductImages(e.target.files);
+					}}
+					className="w-full p-2 border rounded"
+				/>
+
+        <button onClick={handleUpdateItem} className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
           Update Item
         </button>
 
