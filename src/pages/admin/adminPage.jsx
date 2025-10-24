@@ -6,6 +6,8 @@ import { Link, Route, Routes } from "react-router-dom";
 import AdminItems from "./adminitem";
 import AddItemPage from "./addItemPage";
 import UpdateItemPage from "./updateItem";
+import AdminUsersPage from "./adminUsersPage";
+import AdminOrdersPage from "./adminBookingPage";
 
 
 export default function AdminPage() {
@@ -19,10 +21,10 @@ export default function AdminPage() {
       </div>
       <div className="w-[calc(100vw-200px)] bg ">
         <Routes>
-          
-          <Route path = "/bookings" element={<h1>Bookings</h1>} />
+
+          <Route path = "/bookings" element={<AdminOrdersPage />} />
           <Route path = "/items" element={<AdminItems />} />
-          <Route path = "/users" element={<h1>Users</h1>} />
+          <Route path = "/users" element={<AdminUsersPage />} />
           <Route path = "/items/add" element={<AddItemPage />} />
           <Route path = "/items/edit" element={<UpdateItemPage />} />
         </Routes>
