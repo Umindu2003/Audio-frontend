@@ -31,6 +31,9 @@ export default function Header() {
 				}}
 			/>
 
+      
+
+
       <MobileNavPanel isOpen={navPanelOpen} setOpen={setNavPanelOpen} />
 
     </header>

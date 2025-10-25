@@ -9,6 +9,7 @@ import RegisterPage from './pages/register/register'
 import Testing from './components/testing'
 import BookingPage from './pages/home/bookingPage'
 import { GoogleOAuthProvider } from '@react-oauth/google'
+import VerifyEmail from './pages/verifyEmail/verifyEmail'
 
 function App() {
   return (
@@ -16,12 +17,15 @@ function App() {
     <BrowserRouter>
       <Toaster position='top-right' />
       <Routes>
+
         <Route path="/testing" element={<Testing />} />
         <Route path="/admin/*" element={<AdminPage />} />
         <Route path="/*" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/booking" element={<BookingPage />} />
+        <Route path="/verify-email" element={<VerifyEmail />} />
+
       </Routes>
     </BrowserRouter>
     </GoogleOAuthProvider>

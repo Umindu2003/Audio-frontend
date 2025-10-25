@@ -62,6 +62,13 @@ export default function LoginPage() {
                 const user = res.data.user
                 localStorage.setItem("token", res.data.token);
 
+
+                if(user.emailVerified == false){
+                    navigate("/verify-email")
+                  return
+                }
+
+
                 if (user.role === "admin") {
                     navigate("/admin"); // if the user is admin, redirect to admin page
                 }else{
