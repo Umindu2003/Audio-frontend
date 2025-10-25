@@ -28,11 +28,20 @@ export default function LoginPage() {
           toast.success("Login Success");
           const user = response.data.user;
           localStorage.setItem("token", response.data.token);
+          
+          // Admins bypass email verification
           if (user?.role === "admin") {
             navigate("/admin/");
-          } else {
-            navigate("/");
+            return;
           }
+
+          // Regular users need email verification
+          if (user?.emailVerified === false) {
+            navigate("/verify-email");
+            return;
+          }
+
+          navigate("/");
         } catch (err) {
           console.log(err);
           const message = err?.response?.data?.error || "Google login failed";
@@ -62,18 +71,20 @@ export default function LoginPage() {
                 const user = res.data.user
                 localStorage.setItem("token", res.data.token);
 
-
-                if(user.emailVerified == false){
-                    navigate("/verify-email")
-                  return
-                }
-
-
+                // Admins bypass email verification
                 if (user.role === "admin") {
                     navigate("/admin"); // if the user is admin, redirect to admin page
-                }else{
-                    navigate("/");
+                    return;
                 }
+
+                // Regular users need email verification
+                if(user.emailVerified == false){
+                    navigate("/verify-email")
+                    return
+                }
+
+                navigate("/");
+
 
             }).catch((err) => {
                 console.log(err);

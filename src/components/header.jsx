@@ -8,10 +8,11 @@ import MobileNavPanel from "./mobileNavPanel";
 export default function Header() {
 
   const [navPanelOpen, setNavPanelOpen] = useState(false);
+  const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
   return (
-    <header className="w-full h-[70px] shadow-xl flex justify-center items-center relative bg-accent">
-      <img src="/logo.png" alt="logo" className="h-[60px] w-[60px] object-cover border-[3px] absolute left-1 rounded-full"/>
+    <header className="w-full h-[70px] shadow-xl flex justify-center items-center relative bg-[#8B5E3C]">
+      <img src="/logo.png" alt="logo" className="h-[85px] w-[85px]   absolute left-1 rounded-full"/>
         <div className="hidden w-[450px]  md:flex justify-evenly items-center">
         <Link to= "/" className="hidden md:block text-[25px]  m-1"> Home </Link>
         <Link to= "/contacts" className="hidden md:block text-[25px]  m-1"> Contacts </Link>
@@ -31,7 +32,14 @@ export default function Header() {
 				}}
 			/>
 
-      
+       {token != null && (
+        <button className="hidden md:block absolute right-5 text-[20px] text-red-400" onClick={()=>{
+        localStorage.removeItem("token")
+        window.location.href = "/login"
+      }}>
+        Logout
+      </button>
+       )}
 
 
       <MobileNavPanel isOpen={navPanelOpen} setOpen={setNavPanelOpen} />
