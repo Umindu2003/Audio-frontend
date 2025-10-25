@@ -1,4 +1,7 @@
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJzb25obWtvbWdpYWlrc2Z2c251Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA5OTMwMzgsImV4cCI6MjA3NjU2OTAzOH0.FB6lZJbULKWW5S7APgGLhB3pAAilMXJDcNqMvqtdchs
 
 
-https://rsonhmkomgiaiksfvsnu.supabase.co
+https://rsonhmkomgiaiksfvsnu.supabase.
+
+682183102181-tqbgti21jf47ekra8d4kan6u2rde7q33.apps.googleusercontent.com -> client ID
+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     -> Client secret

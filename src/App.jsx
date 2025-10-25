@@ -8,9 +8,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import RegisterPage from './pages/register/register'
 import Testing from './components/testing'
 import BookingPage from './pages/home/bookingPage'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 function App() {
   return (
+    <GoogleOAuthProvider clientId='682183102181-tqbgti21jf47ekra8d4kan6u2rde7q33.apps.googleusercontent.com'>
     <BrowserRouter>
       <Toaster position='top-right' />
       <Routes>
@@ -22,6 +24,7 @@ function App() {
         <Route path="/booking" element={<BookingPage />} />
       </Routes>
     </BrowserRouter>
+    </GoogleOAuthProvider>
   )
 }
 
