@@ -18,12 +18,14 @@ export default function Header() {
         <Link to= "/contacts" className="hidden md:block text-[22px] font-classic text-textColor hover:text-highlight hover:scale-110 transition-all duration-300 m-1"> Contacts </Link>
         <Link to= "/gallery" className="hidden md:block text-[22px] font-classic text-textColor hover:text-highlight hover:scale-110 transition-all duration-300 m-1"> Gallery </Link>
         <Link to= "/items" className="hidden md:block text-[22px] font-classic text-textColor hover:text-highlight hover:scale-110 transition-all duration-300 m-1"> Items </Link>
-        <Link
-					to="/booking"
-          className="hidden md:block text-[22px] text-textColor hover:text-highlight hover:scale-125 transition-all duration-300 m-1 absolute right-40"
-				>
-					<FaCartShopping />
-				</Link>
+        {token != null && (
+          <Link
+            to="/booking"
+            className="hidden md:block text-[22px] text-textColor hover:text-highlight hover:scale-125 transition-all duration-300 m-1 absolute right-40"
+          >
+            <FaCartShopping />
+          </Link>
+        )}
         </div>
         <GiHamburgerMenu
 				className="absolute right-5 text-[24px] text-textColor hover:text-highlight cursor-pointer transition-all duration-300 md:hidden"
@@ -32,13 +34,22 @@ export default function Header() {
 				}}
 			/>
 
-       {token != null && (
+       {token != null ? (
         <button className="hidden md:block absolute right-5 text-[18px] font-serif-vintage text-accent hover:text-highlight hover:scale-110 transition-all duration-300 border-2 border-accent hover:border-highlight px-3 py-1 rounded-md shadow-vintage" onClick={()=>{
         localStorage.removeItem("token")
         window.location.href = "/login"
       }}>
         Logout
       </button>
+       ) : (
+        <div className="hidden md:flex absolute right-5 gap-3">
+          <Link to="/login" className="text-[18px] font-serif-vintage text-textColor hover:text-highlight hover:scale-110 transition-all duration-300 border-2 border-accent hover:border-highlight px-3 py-1 rounded-md shadow-vintage bg-primary">
+            Login
+          </Link>
+          <Link to="/register" className="text-[18px] font-serif-vintage text-accent hover:text-highlight hover:scale-110 transition-all duration-300 border-2 border-accent hover:border-highlight px-3 py-1 rounded-md shadow-vintage">
+            Register
+          </Link>
+        </div>
        )}
 
 

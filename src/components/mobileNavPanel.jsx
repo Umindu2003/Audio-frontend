@@ -8,6 +8,7 @@ export default function MobileNavPanel(props) {
 	const isOpen = props.isOpen;
 	const setOpen = props.setOpen;
 	const navigate = useNavigate();
+	const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
 	function goTo(route) {
 		navigate(route);
@@ -64,15 +65,17 @@ export default function MobileNavPanel(props) {
 							Gallery
 						</div>                        
 
-						<div
-							onClick={() => {
-								goTo("/booking");
-							}}
-							className="text-[20px] font-serif-vintage text-textColor m-1 p-3 flex items-center gap-3 cursor-pointer hover:bg-interactive hover:text-highlight rounded-md transition-all duration-300 border-b border-border"
-						>
-							<FaRegCalendarCheck className="text-2xl" />
-							Booking
-						</div>
+						{token != null && (
+							<div
+								onClick={() => {
+									goTo("/booking");
+								}}
+								className="text-[20px] font-serif-vintage text-textColor m-1 p-3 flex items-center gap-3 cursor-pointer hover:bg-interactive hover:text-highlight rounded-md transition-all duration-300 border-b border-border"
+							>
+								<FaRegCalendarCheck className="text-2xl" />
+								Booking
+							</div>
+						)}
 
 						<div
 							onClick={() => {
@@ -93,6 +96,38 @@ export default function MobileNavPanel(props) {
 							<MdInfoOutline className="text-2xl" />
 							About
 						</div>
+
+						{/* Authentication Buttons */}
+						{token != null ? (
+							<div
+								onClick={() => {
+									localStorage.removeItem("token");
+									window.location.href = "/login";
+								}}
+								className="text-[20px] font-serif-vintage text-accent m-1 p-3 mt-4 flex items-center gap-3 cursor-pointer hover:bg-interactive hover:text-highlight rounded-md transition-all duration-300 border-2 border-accent"
+							>
+								Logout
+							</div>
+						) : (
+							<div className="mt-4 px-2 flex flex-col gap-2">
+								<div
+									onClick={() => {
+										goTo("/login");
+									}}
+									className="text-[20px] font-serif-vintage text-textColor m-1 p-3 flex items-center justify-center cursor-pointer hover:bg-interactive hover:text-highlight rounded-md transition-all duration-300 border-2 border-accent bg-primary"
+								>
+									Login
+								</div>
+								<div
+									onClick={() => {
+										goTo("/register");
+									}}
+									className="text-[20px] font-serif-vintage text-accent m-1 p-3 flex items-center justify-center cursor-pointer hover:bg-interactive hover:text-highlight rounded-md transition-all duration-300 border-2 border-accent"
+								>
+									Register
+								</div>
+							</div>
+						)}
 					</div>
 				</div>
 			)}

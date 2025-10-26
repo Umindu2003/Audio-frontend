@@ -1,15 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ImageSlider from "../../components/imageSlider";
 import { addToCart, loadCart } from "../../utils/cart";
 import toast from "react-hot-toast";
 
 export default function ProductOverview() {
 	const params = useParams();
+	const navigate = useNavigate();
 	const key = params.key;
 	const [loadingStatus, setLoadingStatus] = useState("loading");
 	const [product, setProduct] = useState({});
+	const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
 	useEffect(() => {
 		axios
@@ -60,6 +62,11 @@ export default function ProductOverview() {
 						<button
 							className="vintage-button mt-8 text-lg px-8 py-3"
 							onClick={() => {
+								if (!token) {
+									toast.error("Please login to add items to cart");
+									navigate("/login");
+									return;
+								}
 								addToCart(product.key, 1);
 								toast.success("Added to Cart");
 								console.log(loadCart());
