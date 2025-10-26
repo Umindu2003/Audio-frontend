@@ -58,41 +58,47 @@ export default function BookingPage(){
     }
 
     return(
-        <div className="w-full h-full flex flex-col items-center ">
-            <h1 className="text-2xl font-bold text-accent">Create Booking</h1>
-            <div className="w-full flex flex-col items-center gap-4 mt-4">
-                <label className="flex flex-col">
-                    <span className="text-accent font-semibold">Starting Date:</span>
+        <div className="w-full min-h-screen flex flex-col items-center bg-primary py-8 px-4">
+            <h1 className="text-4xl font-bold font-classic text-accent mb-8 border-b-4 border-accent pb-3 shadow-vintage">Create Booking</h1>
+            <div className="w-full flex flex-col items-center gap-6 mt-4 vintage-card max-w-md p-6">
+                <label className="flex flex-col w-full">
+                    <span className="text-accent font-semibold font-serif-vintage mb-2 text-lg">Starting Date:</span>
                     <input 
                         type="date" 
                         value={startingDate} 
                         onChange={(e) => setStartingDate(e.target.value)} 
-                        className="border border-secondary rounded-md p-2" 
+                        className="vintage-input" 
                     />
                 </label>
-                <label className="flex flex-col">
-                    <span className="text-accent font-semibold">Ending Date:</span>
+                <label className="flex flex-col w-full">
+                    <span className="text-accent font-semibold font-serif-vintage mb-2 text-lg">Ending Date:</span>
                     <input 
                         type="date" 
                         value={endingDate} 
                         onChange={(e) => setEndingDate(e.target.value)} 
-                        className="border border-secondary rounded-md p-2" 
+                        className="vintage-input" 
                     />
                 </label>
-                <p className="text-accent font-medium">Total Days: {daysBetween}</p>
+                <p className="text-textColor font-medium font-vintage text-lg bg-interactive bg-opacity-30 px-6 py-2 rounded-md border border-border">
+                    Total Days: <span className="text-highlight font-bold">{daysBetween}</span>
+                </p>
             </div>
-            <div className="w-full flex flex-col items-center mt-4">
+            <div className="w-full flex flex-col items-center mt-8">
                 {
                     cart.orderedItems.map((item)=>{
                         return <BookingItem itemKey={item.key} key={item.key} qty={item.qty} refresh={reloadCart}/>
                     })
                 }
             </div>
-            <div className="w-full flex justify-center mt-4">
-                <p className="text-accent font-semibold">Total: {total.toFixed(2)}</p>
+            <div className="w-full flex justify-center mt-8">
+                <p className="text-3xl font-bold font-classic text-highlight bg-secondary px-8 py-4 rounded-lg border-2 border-accent shadow-vintage-lg">
+                    Total: <span className="text-accent">Rs. {total.toFixed(2)}</span>
+                </p>
             </div>
-            <div className="w-full flex justify-center mt-4">
-                <button className="bg-accent text-white px-4 py-2 rounded-md" onClick={handleBookingCreation}>Create Booking</button>
+            <div className="w-full flex justify-center mt-8">
+                <button className="vintage-button text-xl px-10 py-4" onClick={handleBookingCreation}>
+                    Create Booking
+                </button>
             </div>
         </div>
     )

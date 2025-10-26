@@ -10,6 +10,7 @@ import AddItemPage from "./addItemPage";
 import UpdateItemPage from "./updateItem";
 import AdminUsersPage from "./adminUsersPage";
 import AdminOrdersPage from "./adminBookingPage";
+import AdminDashboard from "./adminDashboard";
 
 
 export default function AdminPage() {
@@ -40,16 +41,17 @@ export default function AdminPage() {
   },[])
 
   return (
-    <div className="w-full h-screen flex">
-      <div className="w-[200px] h-full bg-green-200">
-        <Link to ="/" className="w-full h-[40px] text-[25px] font-bold  flex justify-center items-center"> <MdOutlineGraphicEq /> Dashboard</Link>
-        <Link to ="/admin/bookings" className="w-full h-[40px] text-[25px] font-bold  flex justify-center items-center"> <BiBookmarkAlt/> Bookings</Link>
-        <Link to ="/admin/items" className="w-full h-[40px] text-[25px] font-bold flex justify-center items-center"> <LuSpeaker />Items</Link>
-        <Link to ="/admin/users" className="w-full h-[40px] text-[25px] font-bold flex justify-center items-center"> <FaRegUser /> Users</Link>
+    <div className="w-full h-screen flex bg-primary">
+      <div className="w-[200px] h-full bg-secondary border-r-4 border-border shadow-vintage-lg">
+        <Link to ="/admin" className="w-full h-[50px] text-[20px] font-serif-vintage text-textColor hover:text-highlight hover:bg-interactive transition-all duration-300 flex justify-center items-center gap-2 border-b-2 border-border"> <MdOutlineGraphicEq /> Dashboard</Link>
+        <Link to ="/admin/bookings" className="w-full h-[50px] text-[20px] font-serif-vintage text-textColor hover:text-highlight hover:bg-interactive transition-all duration-300 flex justify-center items-center gap-2 border-b-2 border-border"> <BiBookmarkAlt/> Bookings</Link>
+        <Link to ="/admin/items" className="w-full h-[50px] text-[20px] font-serif-vintage text-textColor hover:text-highlight hover:bg-interactive transition-all duration-300 flex justify-center items-center gap-2 border-b-2 border-border"> <LuSpeaker />Items</Link>
+        <Link to ="/admin/users" className="w-full h-[50px] text-[20px] font-serif-vintage text-textColor hover:text-highlight hover:bg-interactive transition-all duration-300 flex justify-center items-center gap-2 border-b-2 border-border"> <FaRegUser /> Users</Link>
       </div>
-      <div className="w-[calc(100vw-200px)] bg ">
+      <div className="w-[calc(100vw-200px)] bg-primary overflow-auto">
         
         {userValidated&&<Routes>
+          <Route path = "/" element={<AdminDashboard />} />
           <Route path = "/bookings" element={<AdminOrdersPage />} />
           <Route path = "/items" element={<AdminItems />} />
           <Route path = "/users" element={<AdminUsersPage />} />

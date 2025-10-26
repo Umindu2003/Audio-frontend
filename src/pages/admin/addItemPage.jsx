@@ -75,34 +75,34 @@ export default function AddItemPage() {
   }
 
   return (
-    <div className="w-full h-full flex flex-col items-center p-4">
-      <h1 className="text-xl font-bold mb-4">Add New Item</h1>
-      <div className="w-[400px] border rounded-xl shadow p-4 flex flex-col gap-3">
+    <div className="w-full min-h-screen bg-primary flex flex-col items-center p-8">
+      <h1 className="text-4xl font-serif-vintage text-textColor mb-8 border-b-4 border-accent pb-4">Add New Item</h1>
+      <div className="w-[500px] vintage-card bg-secondary p-8 rounded-lg shadow-vintage-lg border-4 border-border flex flex-col gap-4">
         <input
           value={productKey}
           onChange={(e) => setProductKey(e.target.value)}
           type="text"
-          placeholder="Product Key"
-          className="border p-2 rounded"
+          placeholder="Product Key (e.g., GRAMO-001)"
+          className="vintage-input w-full p-3 border-2 border-border rounded bg-primary text-textColor font-vintage placeholder-textColor/50 focus:border-accent focus:outline-none"
         />
         <input
           value={productName}
           onChange={(e) => setProductName(e.target.value)}
           type="text"
           placeholder="Product Name"
-          className="border p-2 rounded"
+          className="vintage-input w-full p-3 border-2 border-border rounded bg-primary text-textColor font-vintage placeholder-textColor/50 focus:border-accent focus:outline-none"
         />
         <input
           value={productPrice}
           onChange={(e) => setProductPrice(Number(e.target.value))}
           type="number"
-          placeholder="Product Price"
-          className="border p-2 rounded"
+          placeholder="Product Price (LKR)"
+          className="vintage-input w-full p-3 border-2 border-border rounded bg-primary text-textColor font-vintage placeholder-textColor/50 focus:border-accent focus:outline-none"
         />
         <select
           value={productCategory}
           onChange={(e) => setProductCategory(e.target.value)}
-          className="border p-2 rounded"
+          className="vintage-input w-full p-3 border-2 border-border rounded bg-primary text-textColor font-vintage focus:border-accent focus:outline-none"
         >
           <option value="audio">Audio</option>
           <option value="lights">Lights</option>
@@ -111,33 +111,33 @@ export default function AddItemPage() {
           value={productDimensions}
           onChange={(e) => setProductDimensions(e.target.value)}
           type="text"
-          placeholder="Product Dimensions"
-          className="border p-2 rounded"
+          placeholder="Product Dimensions (e.g., 18 x 20 x 45 cm)"
+          className="vintage-input w-full p-3 border-2 border-border rounded bg-primary text-textColor font-vintage placeholder-textColor/50 focus:border-accent focus:outline-none"
         />
-        <input
+        <textarea
           value={productDescription}
           onChange={(e) => setProductDescription(e.target.value)}
-          type="text"
           placeholder="Product Description"
-          className="border p-2 rounded"
+          rows="4"
+          className="vintage-input w-full p-3 border-2 border-border rounded bg-primary text-textColor font-vintage placeholder-textColor/50 focus:border-accent focus:outline-none resize-none"
         />
-        <input
-					type="file"
-					multiple
-					onChange={(e) => {
-						setProductImages(e.target.files);
-					}}
-					className="w-full p-2 border rounded"
-				/>
+        <div className="flex flex-col gap-2">
+          <label className="text-textColor font-serif-vintage text-sm">Upload Product Images</label>
+          <input
+            type="file"
+            multiple
+            onChange={(e) => {
+              setProductImages(e.target.files);
+            }}
+            className="w-full p-3 border-2 border-border rounded bg-primary text-textColor font-vintage file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-vintage file:bg-accent file:text-primary hover:file:bg-highlight file:cursor-pointer"
+          />
+        </div>
 
-
-
-        
-        <button onClick={handleAddItem} className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
-          Add
+        <button onClick={handleAddItem} className="vintage-button w-full bg-accent hover:bg-highlight text-primary py-3 rounded-md font-serif-vintage font-bold text-lg transition-all duration-300 mt-4">
+          Add Item
         </button>
 
-        <button onClick={() => {navigate("/admin/items")}} className="bg-red-500 text-white py-2 rounded hover:bg-red-600">
+        <button onClick={() => {navigate("/admin/items")}} className="vintage-button w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-md font-serif-vintage font-bold text-lg transition-all duration-300">
           Cancel
         </button>
 

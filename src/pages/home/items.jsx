@@ -25,8 +25,12 @@ export default function Items() {
   }, []);
 
   return (
-    <div className="w-full h-full flex flex-wrap justify-center pt-[50px]">
-      {state === "loading" && <div className="w-full h-full flex justify-center items-center"><div className="w-[50px] h-[50px] border-4 rounded-full border-t-green-500 animate-spin"></div></div>}
+    <div className="w-full min-h-screen flex flex-wrap justify-center pt-[50px] bg-primary">
+      {state === "loading" && (
+        <div className="w-full h-full flex justify-center items-center">
+          <div className="w-[50px] h-[50px] border-4 rounded-full border-t-accent border-r-highlight border-b-interactive border-l-secondary animate-spin shadow-vintage"></div>
+        </div>
+      )}
       {state === "loaded" && items.map((item) => (
             <ProductCard key={item.key} item={item}/>
       ))}

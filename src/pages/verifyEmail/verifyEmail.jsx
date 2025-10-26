@@ -37,12 +37,18 @@ export default function VerifyEmail(){
         })
     }
     return(
-        <div className="w-full h-screen flex justify-center items-center">
-            <div className="w-[400px] h-[300px] bg-white shadow-lg rounded-lg flex flex-col justify-center items-center">
-                <h1 className="text-2xl font-bold">Verify Email</h1>
-                <p className="text-gray-500">Please verify your email to continue</p>
-                <input type="number" placeholder="OTP" value={otp} onChange={(e)=>setOtp(e.target.value)} className="border p-2 rounded-lg w-[80%]"/>
-                <button onClick={handleVerifyEmail} className="bg-blue-500 text-white p-2 rounded-lg w-[80%]">Verify</button>
+        <div className="w-full h-screen flex justify-center items-center bg-primary">
+            <div className="w-[400px] h-[350px] vintage-card flex flex-col justify-center items-center gap-4 p-6">
+                <h1 className="text-3xl font-bold font-classic text-accent border-b-2 border-accent pb-2">Verify Email</h1>
+                <p className="text-textColor font-serif-vintage text-center">Please verify your email to continue</p>
+                <input 
+                    type="number" 
+                    placeholder="Enter OTP" 
+                    value={otp} 
+                    onChange={(e)=>setOtp(e.target.value)} 
+                    className="vintage-input w-[80%] text-center text-lg"
+                />
+                <button onClick={handleVerifyEmail} className="vintage-button w-[80%] py-3">Verify</button>
             </div>
         </div>
     )

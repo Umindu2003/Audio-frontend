@@ -4,6 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
+import { FcGoogle } from "react-icons/fc";
 
 export default function LoginPage() {
 
@@ -94,30 +95,36 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="bg-picture w-full h-screen justify-center items-center flex">
-            <form onSubmit={handleSubmit}>
-            <div className="w-[400px] h-[400px] backdrop-blur-xl rounded-2xl justify-center items-center flex flex-col relative">
+        <div className="relative w-full h-screen flex justify-center items-center bg-primary">
+            {/* Blurred Background */}
+            <div className="absolute inset-0 bg-picture bg-cover bg-center blur-md"></div>
+            
+            {/* Login Form */}
+            <form onSubmit={handleSubmit} className="relative z-10">
+            <div className="w-[400px] h-[450px] vintage-card backdrop-blur-lg flex flex-col justify-center items-center relative shadow-vintage-xl">
 
-                <img src="/logo.png" alt="logo" className="w-[100px] h-[100px] object-cover mb-4  top-1"/>
-                <input type="email" placeholder="Email" className="mt-6  w-[300px] h-[30px] mb-4 rounded-md p-2 bg-transparent border-b-2 text-white outline-none"
+                <img src="/logo.png" alt="logo" className="w-[100px] h-[100px] object-cover mb-6 border-4 border-accent rounded-full shadow-vintage"/>
+                <h2 className="text-3xl font-classic font-bold text-accent mb-6">Login</h2>
+                <input type="email" placeholder="Email" className="mt-4 w-[300px] h-[40px] mb-4 rounded-md p-3 bg-interactive bg-opacity-50 border-2 border-border text-textColor outline-none focus:border-accent focus:ring-2 focus:ring-highlight font-vintage transition-all"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                <input type="password" placeholder="Password" className="mt-6 w-[300px] h-[30px] mb-4 rounded-md p-2 bg-transparent border-b-2 text-white outline-none"
+                <input type="password" placeholder="Password" className="w-[300px] h-[40px] mb-4 rounded-md p-3 bg-interactive bg-opacity-50 border-2 border-border text-textColor outline-none focus:border-accent focus:ring-2 focus:ring-highlight font-vintage transition-all"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <button className="my-8 w-[150px] h-[40px] bg-[#efac38] text-white rounded-md  transition duration-300">Login</button>
+                <button className="my-4 vintage-button w-[200px] h-[45px]">Login</button>
                 <button
                   type="button"
                   onClick={() => {
                     if (!isGoogleLoading) googleLogin();
                   }}
                   disabled={isGoogleLoading}
-                  className={`my-2 w-[300px] h-[50px] rounded-lg text-2xl text-white transition disabled:opacity-60 disabled:cursor-not-allowed ${
-                    isGoogleLoading ? "bg-[#efac38]/80" : "bg-[#efac38]"
+                  className={`my-2 w-[300px] h-[45px] rounded-lg font-serif-vintage text-lg transition-all shadow-vintage border-2 border-border flex items-center justify-center gap-2 ${
+                    isGoogleLoading ? "bg-highlight text-primary opacity-60 cursor-not-allowed" : "bg-accent text-primary hover:bg-highlight hover:scale-105"
                   }`}
                 >
+                  <FcGoogle className="text-2xl" />
                   {isGoogleLoading ? "Signing in..." : "Login with Google"}
                 </button>
             </div>

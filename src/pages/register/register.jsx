@@ -37,20 +37,26 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="bg-picture h-screen flex justify-center items-center">
-      <form onSubmit={handleSubmit}>
-        <div className="w-[400px] h-auto py-8 backdrop-blur-xl rounded-2xl flex flex-col justify-center items-center relative">
+    <div className="relative h-screen flex justify-center items-center bg-primary">
+      {/* Blurred Background */}
+      <div className="absolute inset-0 bg-picture bg-cover bg-center blur-md"></div>
+      
+      {/* Register Form */}
+      <form onSubmit={handleSubmit} className="relative z-10">
+        <div className="w-[400px] h-auto py-8 vintage-card backdrop-blur-lg flex flex-col justify-center items-center relative shadow-vintage-xl">
 
           <img
             src="/logo.png"
             alt="logo"
-            className="w-[100px] h-[100px] object-cover mb-4 top-1"
+            className="w-[100px] h-[100px] object-cover mb-4 border-4 border-accent rounded-full shadow-vintage"
           />
+          
+          <h2 className="text-3xl font-classic font-bold text-accent mb-6">Register</h2>
 
           <input
             type="text"
             placeholder="First Name"
-            className="mt-4 w-[300px] h-[30px] mb-4 rounded-md p-2 bg-transparent border-b-2 text-white outline-none"
+            className="mt-2 w-[300px] h-[40px] mb-3 rounded-md p-3 bg-interactive bg-opacity-50 border-2 border-border text-textColor outline-none focus:border-accent focus:ring-2 focus:ring-highlight font-vintage transition-all"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
@@ -58,7 +64,7 @@ export default function RegisterPage() {
           <input
             type="text"
             placeholder="Last Name"
-            className="w-[300px] h-[30px] mb-4 rounded-md p-2 bg-transparent border-b-2 text-white outline-none"
+            className="w-[300px] h-[40px] mb-3 rounded-md p-3 bg-interactive bg-opacity-50 border-2 border-border text-textColor outline-none focus:border-accent focus:ring-2 focus:ring-highlight font-vintage transition-all"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
@@ -66,7 +72,7 @@ export default function RegisterPage() {
           <input
             type="email"
             placeholder="Email"
-            className="w-[300px] h-[30px] mb-4 rounded-md p-2 bg-transparent border-b-2 text-white outline-none"
+            className="w-[300px] h-[40px] mb-3 rounded-md p-3 bg-interactive bg-opacity-50 border-2 border-border text-textColor outline-none focus:border-accent focus:ring-2 focus:ring-highlight font-vintage transition-all"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -74,7 +80,7 @@ export default function RegisterPage() {
           <input
             type="password"
             placeholder="Password"
-            className="w-[300px] h-[30px] mb-4 rounded-md p-2 bg-transparent border-b-2 text-white outline-none"
+            className="w-[300px] h-[40px] mb-3 rounded-md p-3 bg-interactive bg-opacity-50 border-2 border-border text-textColor outline-none focus:border-accent focus:ring-2 focus:ring-highlight font-vintage transition-all"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -82,7 +88,7 @@ export default function RegisterPage() {
           <input
             type="text"
             placeholder="Address"
-            className="w-[300px] h-[30px] mb-4 rounded-md p-2 bg-transparent border-b-2 text-white outline-none"
+            className="w-[300px] h-[40px] mb-3 rounded-md p-3 bg-interactive bg-opacity-50 border-2 border-border text-textColor outline-none focus:border-accent focus:ring-2 focus:ring-highlight font-vintage transition-all"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           />
@@ -90,23 +96,23 @@ export default function RegisterPage() {
           <input
             type="text"
             placeholder="Phone"
-            className="w-[300px] h-[30px] mb-4 rounded-md p-2 bg-transparent border-b-2 text-white outline-none"
+            className="w-[300px] h-[40px] mb-3 rounded-md p-3 bg-interactive bg-opacity-50 border-2 border-border text-textColor outline-none focus:border-accent focus:ring-2 focus:ring-highlight font-vintage transition-all"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
 
           <button
             type="submit"
-            className="my-6 w-[150px] h-[40px] bg-[#efac38] text-white rounded-md transition duration-300"
+            className="my-6 vintage-button w-[200px] h-[45px]"
           >
             Register
           </button>
 
-          <p className="text-white text-sm mt-2">
+          <p className="text-textColor text-sm mt-2 font-vintage">
             Already have an account?{" "}
             <span
               onClick={() => navigate("/login")}
-              className="text-[#efac38] cursor-pointer hover:underline"
+              className="text-accent hover:text-highlight cursor-pointer font-semibold transition-all duration-300"
             >
               Login
             </span>
