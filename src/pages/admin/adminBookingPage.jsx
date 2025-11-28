@@ -71,8 +71,6 @@ export default function AdminOrdersPage() {
 								<th className="px-6 py-4 text-left text-textColor font-serif-vintage text-lg">Order ID</th>
 								<th className="px-6 py-4 text-left text-textColor font-serif-vintage text-lg">Email</th>
 								<th className="px-6 py-4 text-left text-textColor font-serif-vintage text-lg">Days</th>
-								<th className="px-6 py-4 text-left text-textColor font-serif-vintage text-lg">Starting Date</th>
-								<th className="px-6 py-4 text-left text-textColor font-serif-vintage text-lg">Ending Date</th>
 								<th className="px-6 py-4 text-left text-textColor font-serif-vintage text-lg">Total Amount</th>
 								<th className="px-6 py-4 text-left text-textColor font-serif-vintage text-lg">Approval Status</th>
 								<th className="px-6 py-4 text-left text-textColor font-serif-vintage text-lg">Order Date</th>
@@ -91,12 +89,6 @@ export default function AdminOrdersPage() {
 									<td className="px-6 py-4 text-textColor font-vintage font-bold text-base">{order.orderId}</td>
 									<td className="px-6 py-4 text-textColor font-vintage text-base">{order.email}</td>
 									<td className="px-6 py-4 text-textColor font-vintage text-base">{order.days}</td>
-									<td className="px-6 py-4 text-textColor font-vintage text-base">
-										{new Date(order.startingDate).toLocaleDateString()}
-									</td>
-									<td className="px-6 py-4 text-textColor font-vintage text-base">
-										{new Date(order.endingDate).toLocaleDateString()}
-									</td>
 									<td className="px-6 py-4 text-textColor font-vintage font-bold text-base">LKR {order.totalAmount.toFixed(2)}</td>
 									<td className="px-6 py-4">
 										<span className={`px-3 py-1 rounded font-vintage font-bold text-sm ${
@@ -135,14 +127,6 @@ export default function AdminOrdersPage() {
 							</p>
 							<p className="text-textColor font-vintage text-base">
 								<span className="font-bold text-accent">Days:</span> {activeOrder.days}
-							</p>
-							<p className="text-textColor font-vintage text-base">
-								<span className="font-bold text-accent">Starting Date:</span>{" "}
-								{new Date(activeOrder.startingDate).toLocaleDateString()}
-							</p>
-							<p className="text-textColor font-vintage text-base">
-								<span className="font-bold text-accent">Ending Date:</span>{" "}
-								{new Date(activeOrder.endingDate).toLocaleDateString()}
 							</p>
 							<p className="text-textColor font-vintage text-base">
 								<span className="font-bold text-accent">Total Amount:</span>{" "}
