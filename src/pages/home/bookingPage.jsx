@@ -50,20 +50,20 @@ export default function BookingPage(){
         }).then((res)=>{
             console.log(res.data);
             localStorage.removeItem("cart");
-            toast.success("Booking Created");
+            toast.success("Order Created Successfully!");
             setCart(loadCart());
         }).catch((err)=>{
-            console.error("Create booking error", err?.response?.data || err.message);
-            toast.error("Failed to create booking");
+            console.error("Create order error", err?.response?.data || err.message);
+            toast.error("Failed to create order");
         })
     }
 
     return(
         <div className="w-full min-h-screen flex flex-col items-center bg-primary py-8 px-4">
-            <h1 className="text-4xl font-bold font-classic text-accent mb-8 border-b-4 border-accent pb-3 shadow-vintage">Create Booking</h1>
+            <h1 className="text-4xl font-bold font-classic text-accent mb-8 border-b-4 border-accent pb-3 shadow-vintage">Create Order</h1>
             <div className="w-full flex flex-col items-center gap-6 mt-4 vintage-card max-w-md p-6">
                 <p className="text-textColor font-medium font-vintage text-lg bg-interactive bg-opacity-30 px-6 py-2 rounded-md border border-border w-full text-center">
-                    Total Orders: <span className="text-highlight font-bold">{totalOrders}</span>
+                    Total Items: <span className="text-highlight font-bold">{totalOrders}</span>
                 </p>
             </div>
             <div className="w-full flex flex-col items-center mt-8">
@@ -80,7 +80,7 @@ export default function BookingPage(){
             </div>
             <div className="w-full flex justify-center mt-8">
                 <button className="vintage-button text-xl px-10 py-4" onClick={handleBookingCreation}>
-                    Create Booking
+                    Place Order
                 </button>
             </div>
         </div>

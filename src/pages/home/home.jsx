@@ -160,7 +160,7 @@ export default function Home() {
               <p className="text-textColor font-serif-vintage mt-2">Book your vintage audio setup or explore our gallery for inspiration.</p>
             </div>
             <div className="flex gap-4">
-              <Link to="/booking" className="vintage-button px-8 py-3 text-lg">Create Booking</Link>
+              <Link to="/booking" className="vintage-button px-8 py-3 text-lg">Create Order</Link>
               <Link to="/contacts" className="vintage-button px-8 py-3 text-lg">Contact Us</Link>
             </div>
           </div>

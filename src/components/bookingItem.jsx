@@ -56,17 +56,17 @@ export default function BookingItem({ itemKey, qty, refresh }) {
 			<img
 				src={item.image?.[0] || '/placeholder.png'}
 				alt={item.name}
-				className="w-20 h-20 object-cover rounded-lg border-2 border-border shadow-vintage"
+				className="w-20 h-20 object-cover rounded-lg border-2 border-border shadow-vintage flex-shrink-0"
 			/>
 
 			{/* Product Details */}
-			<div className="flex flex-row items-center relative w-full">
-				<h3 className="text-lg font-semibold font-classic text-textColor">{item.name}</h3>
-				<div className="flex absolute right-0 gap-4">
-					<p className="font-medium font-vintage w-[70px] text-center text-highlight">
+			<div className="flex flex-col sm:flex-row sm:items-center justify-between w-full gap-2 min-w-0">
+				<h3 className="text-base sm:text-lg font-semibold font-classic text-textColor truncate pr-2 flex-shrink">{item.name}</h3>
+				<div className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+					<p className="font-medium font-vintage w-[70px] text-center text-highlight text-sm sm:text-base">
 						Rs. {item.price?.toFixed(2)}
 					</p>
-					<p className="font-medium font-vintage w-[40px] text-center text-textColor relative flex justify-center items-center">
+					<p className="font-medium font-vintage w-[40px] text-center text-textColor relative flex justify-center items-center text-sm sm:text-base">
 						<button
 							className="absolute top-[-20px] hover:text-highlight hover:scale-125 transition-all duration-200"
 							onClick={() => {
@@ -92,7 +92,7 @@ export default function BookingItem({ itemKey, qty, refresh }) {
 							<FaArrowDown />
 						</button>
 					</p>
-					<p className="text-lg font-bold font-vintage text-accent">
+					<p className="text-base sm:text-lg font-bold font-vintage text-accent w-[90px] text-right">
 						Rs. {((item.price || 0) * qty).toFixed(2)}
 					</p>
 				</div>
