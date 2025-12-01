@@ -20,7 +20,7 @@ export default function VerifyEmail(){
         }).catch((err)=>{
             console.error(err)
         })
-    })
+    },[])
     function handleVerifyEmail(){
         axios.post(`${backendUrl}/api/users/verifyEmail`,{
             code : parseInt(otp)
