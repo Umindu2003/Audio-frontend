@@ -115,19 +115,21 @@ export default function LoginPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <button className="my-4 vintage-button w-[200px] h-[45px]">Login</button>
+                <button className="my-4 vintage-button w-[300px] h-[45px]">Login</button>
                 <button
                   type="button"
                   onClick={() => {
                     if (!isGoogleLoading) googleLogin();
                   }}
                   disabled={isGoogleLoading}
-                  className={`my-2 w-[300px] h-[45px] rounded-lg font-serif-vintage text-lg transition-all shadow-vintage border-2 border-border flex items-center justify-center gap-2 ${
-                    isGoogleLoading ? "bg-highlight text-primary opacity-60 cursor-not-allowed" : "bg-accent text-primary hover:bg-highlight hover:scale-105"
+                  className={`my-2 w-[300px] h-[45px] rounded-lg font-vintage text-base transition-all shadow-vintage border-2 flex items-center justify-center gap-3 ${
+                    isGoogleLoading 
+                      ? "bg-interactive text-textColor opacity-60 cursor-not-allowed border-border" 
+                      : "bg-secondary text-textColor border-border hover:bg-interactive hover:border-accent hover:shadow-vintage-lg"
                   }`}
                 >
                   <FcGoogle className="text-2xl" />
-                  {isGoogleLoading ? "Signing in..." : "Login with Google"}
+                  <span className="font-medium">{isGoogleLoading ? "Signing in..." : "Continue with Google"}</span>
                 </button>
             </div>
             </form>
