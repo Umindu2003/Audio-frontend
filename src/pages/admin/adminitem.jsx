@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 
 export default function AdminItems() {
   const [items, setItems] = useState([]); 
@@ -14,7 +16,7 @@ export default function AdminItems() {
     if (!itemsLoaded) {
       const token = localStorage.getItem("token");
     axios
-      .get("http://localhost:3000/api/products", {
+      .get(`${backendUrl}/api/products`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -41,7 +43,7 @@ export default function AdminItems() {
       setItems(items.filter((item) => item.key !== key));
       const token = localStorage.getItem("token");
       axios
-        .delete(`http://localhost:3000/api/products/${key}`, {
+        .delete(`${backendUrl}/api/products/${key}`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {

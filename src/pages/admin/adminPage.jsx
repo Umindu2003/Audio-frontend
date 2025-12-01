@@ -12,6 +12,8 @@ import AdminUsersPage from "./adminUsersPage";
 import AdminOrdersPage from "./adminBookingPage";
 import AdminDashboard from "./adminDashboard";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 
 export default function AdminPage() {
 
@@ -21,7 +23,7 @@ export default function AdminPage() {
     if(!token){
       window.location.href = "/login";
     }
-    axios.get(`http://localhost:3000/api/users/`,{
+    axios.get(`${backendUrl}/api/users/`,{
       headers:{
         Authorization: `Bearer ${token}`
       }

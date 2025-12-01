@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { FcGoogle } from "react-icons/fc";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export default function LoginPage() {
 
     const [email, setEmail] = useState("");
@@ -21,7 +23,7 @@ export default function LoginPage() {
           setIsGoogleLoading(true);
           console.log(res);
           const response = await axios.post(
-            `http://localhost:3000/api/users/google`,
+            `${backendUrl}/api/users/google`,
             { accessToken: res.access_token },
             { headers: { "Content-Type": "application/json" } }
           );
@@ -62,7 +64,7 @@ export default function LoginPage() {
         e.preventDefault();
         console.log(email , password);
 
-        axios.post("http://localhost:3000/api/users/login", 
+        axios.post(`${backendUrl}/api/users/login`, 
             { 
                 email : email,
                 password : password 

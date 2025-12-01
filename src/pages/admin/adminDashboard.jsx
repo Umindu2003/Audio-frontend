@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { FaUsers, FaBoxOpen, FaCheckCircle, FaTimesCircle, FaShoppingCart } from "react-icons/fa";
 import { MdPending } from "react-icons/md";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export default function AdminDashboard() {
 	const [stats, setStats] = useState({
 		totalUsers: 0,
@@ -26,13 +28,13 @@ export default function AdminDashboard() {
 
 				// Fetch all data in parallel
 				const [usersRes, productsRes, ordersRes] = await Promise.all([
-					axios.get(`http://localhost:3000/api/users/all`, {
+					axios.get(`${backendUrl}/api/users/all`, {
 						headers: { Authorization: `Bearer ${token}` },
 					}),
-					axios.get(`http://localhost:3000/api/products`, {
+					axios.get(`${backendUrl}/api/products`, {
 						headers: { Authorization: `Bearer ${token}` },
 					}),
-					axios.get(`http://localhost:3000/api/orders/`, {
+					axios.get(`${backendUrl}/api/orders/`, {
 						headers: { Authorization: `Bearer ${token}` },
 					}),
 				]);

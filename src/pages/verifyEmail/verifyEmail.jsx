@@ -3,13 +3,15 @@ import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export default function VerifyEmail(){
     const token = localStorage.getItem("token")
     const [otp,setOtp] = useState("")
     const navigate = useNavigate()
     
     useEffect(()=>{
-        axios.get(`http://localhost:3000/api/users/sendOTP`,{
+        axios.get(`${backendUrl}/api/users/sendOTP`,{
             headers:{
                 Authorization : `Bearer ${token}`
             }
@@ -20,7 +22,7 @@ export default function VerifyEmail(){
         })
     })
     function handleVerifyEmail(){
-        axios.post(`http://localhost:3000/api/users/verifyEmail`,{
+        axios.post(`${backendUrl}/api/users/verifyEmail`,{
             code : parseInt(otp)
         },{
             headers:{

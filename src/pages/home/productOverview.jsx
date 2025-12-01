@@ -5,6 +5,8 @@ import ImageSlider from "../../components/imageSlider";
 import { addToCart, loadCart } from "../../utils/cart";
 import toast from "react-hot-toast";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export default function ProductOverview() {
 	const params = useParams();
 	const navigate = useNavigate();
@@ -15,7 +17,7 @@ export default function ProductOverview() {
 
 	useEffect(() => {
 		axios
-			.get(`http://localhost:3000/api/products/${key}`)
+			.get(`${backendUrl}/api/products/${key}`)
 			.then((res) => {
 				// Check if response is an array and find the product with matching key
 				let productData = res.data;

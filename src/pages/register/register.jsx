@@ -4,6 +4,8 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import "./register.css";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export default function RegisterPage() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -17,7 +19,7 @@ export default function RegisterPage() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    axios.post("http://localhost:3000/api/users", {
+    axios.post(`${backendUrl}/api/users`, {
       email,
       firstName,
       lastName,

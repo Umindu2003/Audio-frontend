@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import ProductCard from "../../components/productCard";
 import { FaRecordVinyl, FaTruck, FaHeadphonesAlt, FaTags } from "react-icons/fa";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 function LogoBadge() {
   return (
     <div className="relative w-56 h-56 md:w-72 md:h-72">
@@ -45,7 +47,7 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/products")
+      .get(`${backendUrl}/api/products`)
       .then((res) => {
         const list = Array.isArray(res.data) ? res.data.slice(0, 4) : [];
         setFeatured(list);

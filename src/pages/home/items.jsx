@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import ProductCard from "../../components/productCard";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 
 export default function Items() {
   const [state, setState] = useState("loading"); // "loading", "loaded", "error"
@@ -10,7 +12,7 @@ export default function Items() {
 
   useEffect(() => {
     if (state === "loading"){
-      axios.get("http://localhost:3000/api/products")
+      axios.get(`${backendUrl}/api/products`)
       .then((res) => {
         console.log(res.data);
         setItems(res.data);

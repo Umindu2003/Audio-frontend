@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { addToCart, removeFromCart } from "../utils/cart";
 import { FaArrowDown, FaArrowUp, FaTrash } from "react-icons/fa";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export default function BookingItem({ itemKey, qty, refresh }) {
 	const [item, setItem] = useState(null);
 	const [status, setStatus] = useState("loading"); // loading, success, error
@@ -10,7 +12,7 @@ export default function BookingItem({ itemKey, qty, refresh }) {
 	useEffect(() => {
 		if (status === "loading") {
 			axios
-				.get(`http://localhost:3000/api/products/${itemKey}`)
+				.get(`${backendUrl}/api/products/${itemKey}`)
 				.then((res) => {
 					// Check if response is an array and find the product with matching key
 					let productData = res.data;

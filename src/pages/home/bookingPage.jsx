@@ -4,6 +4,8 @@ import BookingItem from "../../components/bookingItem";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export default function BookingPage(){
     const [cart, setCart] = useState(loadCart());
     const [total , setTotal] = useState(0);
@@ -25,7 +27,7 @@ export default function BookingPage(){
     function calculateTotal(){
         const baseCart = loadCart();
         const cartInfo = { ...baseCart, days: daysBetween, startingDate, endingDate };
-        axios.post(`http://localhost:3000/api/orders/quote`, cartInfo)
+        axios.post(`${backendUrl}/api/orders/quote`, cartInfo)
         .then((res)=>{
             console.log(res.data)
             setTotal(res.data.total);
@@ -43,7 +45,7 @@ export default function BookingPage(){
         const payload = { ...baseCart, days: daysBetween, startingDate, endingDate };
 
         const token = localStorage.getItem("token");
-        axios.post(`http://localhost:3000/api/orders`, payload, {
+        axios.post(`${backendUrl}/api/orders`, payload, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

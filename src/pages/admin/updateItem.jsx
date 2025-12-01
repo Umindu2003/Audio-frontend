@@ -4,6 +4,8 @@ import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import mediaUpload from "../../utils/mediaUpload";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export default function UpdateItemPage() {
   const location = useLocation();
   console.log(location);
@@ -52,7 +54,7 @@ export default function UpdateItemPage() {
       try {
         console.log("Updated image URLs:", updatingImages);
         
-        const result = await axios.put(`http://localhost:3000/api/products/${productKey}`, {
+        const result = await axios.put(`${backendUrl}/api/products/${productKey}`, {
           key : productKey,
           name : productName,
           price : productPrice,

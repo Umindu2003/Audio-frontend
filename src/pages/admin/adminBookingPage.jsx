@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export default function AdminOrdersPage() {
 	const [orders, setOrders] = useState([]);
 	const [loading, setLoading] = useState(true);
@@ -13,7 +15,7 @@ export default function AdminOrdersPage() {
 			try {
 				const token = localStorage.getItem("token");
 				const res = await axios.get(
-					`http://localhost:3000/api/orders/`,
+					`${backendUrl}/api/orders/`,
 					{
 						headers: {
 							Authorization: `Bearer ${token}`,
@@ -33,11 +35,11 @@ export default function AdminOrdersPage() {
 		}
 	}, [loading]);
 
-	function handleOrderStatusChange(orderId, status) {
+    function handleOrderStatusChange(orderId, status) {
         const token = localStorage.getItem("token");
         
         axios.put(
-            `http://localhost:3000/api/orders/status/${orderId}`,
+            `${backendUrl}/api/orders/status/${orderId}`,
             {
                 status: status,
             },

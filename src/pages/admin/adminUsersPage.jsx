@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export default function AdminUsersPage() {
 	const [users, setUsers] = useState([]);
 	const [loading, setLoading] = useState(true);
@@ -10,7 +12,7 @@ export default function AdminUsersPage() {
 			try {
 				const token = localStorage.getItem("token");
 				const res = await axios.get(
-					`http://localhost:3000/api/users/all`,
+					`${backendUrl}/api/users/all`,
 					{
 						headers: {
 							Authorization: `Bearer ${token}`,
@@ -34,7 +36,7 @@ export default function AdminUsersPage() {
     
         const token = localStorage.getItem("token");
 
-        axios.put(`http://localhost:3000/api/users/block/${email}`, {}, {
+        axios.put(`${backendUrl}/api/users/block/${email}`, {}, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
