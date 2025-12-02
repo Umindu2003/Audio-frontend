@@ -103,9 +103,9 @@ export default function LoginPage() {
             
             {/* Login Form */}
             <form onSubmit={handleSubmit} className="relative z-10">
-            <div className="w-[400px] h-[450px] vintage-card backdrop-blur-lg flex flex-col justify-center items-center relative shadow-vintage-xl">
+            <div className="w-[400px] h-[550px] vintage-card backdrop-blur-lg flex flex-col justify-center items-center relative shadow-vintage-xl px-6 py-8">
 
-                <img src="/logo.png" alt="logo" className="w-[100px] h-[100px] object-cover mb-6 border-4 border-accent rounded-full shadow-vintage"/>
+                <img src="/logo.png" alt="logo" className="w-[100px] h-[100px] object-cover mb-4 border-4 border-accent rounded-full shadow-vintage"/>
                 <h2 className="text-3xl font-classic font-bold text-accent mb-6">Login</h2>
                 <input type="email" placeholder="Email" className="mt-4 w-[300px] h-[40px] mb-4 rounded-md p-3 bg-interactive bg-opacity-50 border-2 border-border text-textColor outline-none focus:border-accent focus:ring-2 focus:ring-highlight font-vintage transition-all"
                     value={email}
@@ -131,6 +131,15 @@ export default function LoginPage() {
                   <FcGoogle className="text-2xl" />
                   <span className="font-medium">{isGoogleLoading ? "Signing in..." : "Continue with Google"}</span>
                 </button>
+                <p className="text-textColor text-sm mt-4 font-vintage">
+                  Don't have an account?{" "}
+                  <span
+                    onClick={() => navigate("/register")}
+                    className="text-accent hover:text-highlight cursor-pointer font-semibold transition-all duration-300 underline"
+                  >
+                    Register
+                  </span>
+                </p>
             </div>
             </form>
         </div>
