@@ -87,15 +87,7 @@ export default function MobileNavPanel(props) {
 							Contact
 						</div>
 
-						<div
-							onClick={() => {
-								goTo("/about");
-							}}
-							className="text-[20px] font-serif-vintage text-textColor m-1 p-3 flex items-center gap-3 cursor-pointer hover:bg-interactive hover:text-highlight rounded-md transition-all duration-300 border-b border-border"
-						>
-							<MdInfoOutline className="text-2xl" />
-							About
-						</div>
+						
 
 						{/* Authentication Buttons */}
 						{token != null ? (
